@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+    <!-- Create input fields for text entry-->
+    <input type="text" id="txt-price" placeholder="Enter the price of the item">
+    <input type="text" id="txt-quantity" placeholder="Enter the quanity of the item">
+    <!-- Calculate button, with id btn-submit -->
+    <button id="btn-submit">Calculate</button>
+    <!-- Output area-->
+    <div id="output"></div>
+
+    <script>
+        // Initialize variables and assign them the values that they need.
+        // For instance, the priceInput variable will be equal to the user input from the txt-price input field
+        var priceInput = document.getElementById('txt-price');
+        var quantityInput = document.getElementById('txt-quantity');
+        var submitBtn = document.getElementById('btn-submit');
+        var output = document.getElementById('output');
+
+        // When the submit button (assigned here to submitBtn) is clicked, do the following...
+        submitBtn.addEventListener('click', function () {
+            // Initialize local variables according to the input values
+            var price = priceInput.value;
+            var quanity = quantityInput.value;
+            // I'm unsure what the next two lines do
+            price = +price;
+            quanity = +quanity;
+            // This if statement handles exceptions regarding non-numerical inputs
+            if (Number.isNaN(price) || Number.isNaN(quanity)) {
+            output.innerHTML = 'Invalid input';
+            return;
+            }
+            // Multiply the price by the quantity, round it to the nearest cent, then output the result within the output div
+            var totalPrice = price * quanity;
+            totalPrice = Math.round(totalPrice * 100) / 100;
+            output.innerHTML = quanity + ' items at $' + price + ' each is $' + totalPrice;
+        });
+    </script>   
+</body>
